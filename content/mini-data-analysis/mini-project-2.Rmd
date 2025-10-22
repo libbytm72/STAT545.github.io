@@ -56,10 +56,10 @@ From Milestone 1, you should have an idea of the basic structure of your dataset
 First, write out the 4 research questions you defined in milestone 1 were. This will guide your work through milestone 2:
 
 <!-------------------------- Start your work below ---------------------------->
-1. *FILL_THIS_IN*
-2. *FILL_THIS_IN*
-3. *FILL_THIS_IN*
-4. *FILL_THIS_IN*
+1. How does age of tree relate to genus and what are the most commonly planted genuses by year?
+2. How are different ages of trees distributed throughout the city?
+3. Where are the largest trees in the city?
+4. What is the distribution of the genus Acer accross the city?
 <!----------------------------------------------------------------------------->
 
 Here, we will investigate your data using various data manipulation and graphing functions.
@@ -92,6 +92,42 @@ Using variables and/or tables you made in one of the "Summarizing" tasks:
 Make sure it's clear what research question you are doing each operation for!
 
 <!------------------------- Start your work below ----------------------------->
+1. How does age of tree relate to genus and what are the most commonly planted genuses by year?
+Summarizing: 2.  Compute the number of observations for at least one of your categorical variables. Do not use the function `table()`! :
+Used count function to see the number of observations for each genus, this is helpful to know how many trees of each genus there are in the data set. 
+vancouver_trees %>%
+count(genus_name)
+
+Graphing
+
+2. How are different ages of trees distributed throughout the city?
+Summarizing: 3.  Create a categorical variable with 3 or more groups from an existing numerical variable. You can use this new variable in the other tasks! *An example: age in years into "child, teen, adult, senior".*
+
+Created new catagorical variable of tree age as "sappling, young, mature, old" 
+van_trees_age <- vancouver_trees %>% 
+  mutate(age_class = case_when( date_planted < 2020-01-01 ~ "sappling",
+                                date_planted < 2005-01-01 ~ "young",
+                                date_planted < 1980-01-01 ~ "mature",
+                                TRUE ~ "old"))
+
+Graphing
+
+3. Where are the largest trees in the city?
+Summarizing:
+
+Created new catagorical variable for tree diameter as "small, medium, large, and huge"
+van_trees_dbh <- vancouver_trees %>% 
+  mutate(dbh_class = case_when( diameter < 30 ~ "small",
+                                diameter < 60 ~ "medium",
+                                diameter < 90 ~ "large",
+                                TRUE ~ "huge"))
+Graphing
+
+4. What is the distribution of the genus Acer accross the city?
+Summarizing: 1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
+
+
+Graphing
 
 <!----------------------------------------------------------------------------->
 
